@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.system.entities.Order;
 import com.system.entities.User;
+import com.system.entities.enums.OrderStatus;
 import com.system.repositories.OrderRepository;
 import com.system.repositories.UserRepository;
 import com.system.resouces.UserResource;
@@ -34,9 +35,9 @@ public class TestConfig implements CommandLineRunner{
 
 		userRepository.saveAll(Arrays.asList(u1,u2));
 		
-		Order o1 = new Order(null,Instant.parse("2022-04-10T01:03:07Z") , u1);
-		Order o2 = new Order(null,Instant.parse("2022-05-10T01:03:07Z") , u2);
-		Order o3 = new Order(null,Instant.parse("2022-06-10T01:03:07Z") , u1);
+		Order o1 = new Order(null,Instant.parse("2022-04-10T01:03:07Z") ,OrderStatus.PAID, u1);
+		Order o2 = new Order(null,Instant.parse("2022-05-10T01:03:07Z") ,OrderStatus.WAITING_PAYMENT, u2);
+		Order o3 = new Order(null,Instant.parse("2022-06-10T01:03:07Z") ,OrderStatus.WAITING_PAYMENT, u1);
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3));
 	}
 	
