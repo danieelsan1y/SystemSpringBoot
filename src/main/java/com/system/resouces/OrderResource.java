@@ -21,17 +21,17 @@ import com.system.service.OrderService;
 public class OrderResource {
 	
 	@Autowired
-	private OrderService OrderService;
+	private OrderService service;
 	
 	@GetMapping
 	public ResponseEntity<List<Order>> findAll() {
-		List<Order> lista = OrderService.findByAll();
+		List<Order> lista = service.findAll();
 		return ResponseEntity.ok().body(lista);
 	}
 	
     @GetMapping (value = "/{id}") 
     public ResponseEntity<Order> findById(@PathVariable Long id) {
-    	Order obj = OrderService.findById(id);
+    	Order obj = service.findById(id);
     	return ResponseEntity.ok().body(obj);
     	
     }

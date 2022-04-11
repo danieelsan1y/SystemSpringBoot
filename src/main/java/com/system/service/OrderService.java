@@ -19,7 +19,7 @@ public class OrderService {
 	private OrderRepository repository;
 	
 	
-	public List<Order> findByAll() {
+	public List<Order> findAll() {
 		return repository.findAll();
 	}
 	

@@ -6,29 +6,27 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.system.entities.User;
-import com.system.repositories.UserRepository;
+import com.system.entities.Category;
+import com.system.repositories.CategoryRepository;
 
 
 
 @Service
-public class UserService {
+public class CategoryService {
 
 	
 	@Autowired
-	private UserRepository repository;
+	private CategoryRepository repository;
 	
 	
-	public List<User> findAll() {
+	public List<Category> findAll() {
 		return repository.findAll();
 	}
 	
-	public User findById (Long id) {
-		Optional<User> obj = repository.findById(id);
+	public Category findById (Long id) {
+		Optional<Category> obj = repository.findById(id);
 		return obj.get();
 	}
     
-	
-	
 	
 }

@@ -2,20 +2,19 @@ package com.system.config;
 
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.system.entities.Category;
 import com.system.entities.Order;
 import com.system.entities.User;
 import com.system.entities.enums.OrderStatus;
+import com.system.repositories.CategoryRepository;
 import com.system.repositories.OrderRepository;
 import com.system.repositories.UserRepository;
-import com.system.resouces.UserResource;
-import com.system.service.OrderService;
 
 @Configuration
 @Profile("test")
@@ -23,9 +22,12 @@ public class TestConfig implements CommandLineRunner{
 	
 	@Autowired
 	private UserRepository userRepository;
+	
 	@Autowired
 	private OrderRepository orderRepository;
 	
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -39,6 +41,14 @@ public class TestConfig implements CommandLineRunner{
 		Order o2 = new Order(null,Instant.parse("2022-05-10T01:03:07Z") ,OrderStatus.WAITING_PAYMENT, u2);
 		Order o3 = new Order(null,Instant.parse("2022-06-10T01:03:07Z") ,OrderStatus.WAITING_PAYMENT, u1);
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+		
+		
+		Category c1 = new Category(null, "Eletronics");
+		Category c2 = new Category(null, "Books");
+		Category c3 = new Category(null, "Computers");
+		
+		categoryRepository.saveAll(Arrays.asList(c1,c2,c3));
+		
 	}
 	
 }
